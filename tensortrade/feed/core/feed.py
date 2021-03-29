@@ -57,6 +57,7 @@ class DataFeed(Stream[dict]):
     def reset(self) -> None:
         for s in self.process:
             s.reset()
+        super().reset()
 
 
 class PushFeed(DataFeed):
