@@ -214,8 +214,8 @@ class Stream(Generic[T], Named, Observable):
             if hasattr(listener, "reset"):
                 listener.reset()
         
-        for stream in self.inputs:
-            stream.reset()
+        # for stream in self.inputs:
+        #     stream.reset()
 
         self.value = None
 
