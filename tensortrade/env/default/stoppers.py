@@ -1,6 +1,6 @@
 
 from tensortrade.env.generic import Stopper, TradingEnv
-
+import logging
 
 class MaxLossStopper(Stopper):
     """A stopper that stops an episode if the portfolio has lost a particular
@@ -30,4 +30,8 @@ class MaxLossStopper(Stopper):
     def stop(self, env: 'TradingEnv') -> bool:
         c1 = env.action_scheme.portfolio.profit_loss < self.max_allowed_loss
         c2 = not env.observer.has_next()
+        if c1:
+            logging.info('Stopping due to hitting max allowed loss')
+        if c2:
+            logging.info('Stopping since there is no next state')
         return c1 or c2
